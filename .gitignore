@@ -1,0 +1,24 @@
+# Maven
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+
+# Environment & secrets
+.env
+
+# Logs
+logs/
+*.log
+
+# Test outputs
+allure-results/
+allure-report/
+screenshots/
+videos/
+traces/
