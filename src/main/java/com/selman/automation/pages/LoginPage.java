@@ -2,6 +2,8 @@ package com.selman.automation.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.LoadState;
+import com.selman.automation.config.ConfigManager;
 
 public class LoginPage {
 
@@ -22,7 +24,8 @@ public class LoginPage {
     }
 
     public void navigate() {
-        page.navigate("https://opensource-demo.orangehrmlive.com");
+        page.navigate(ConfigManager.get().baseUrl());
+        page.waitForLoadState(LoadState.NETWORKIDLE);
     }
 
     public void loginAs(String username, String password) {
