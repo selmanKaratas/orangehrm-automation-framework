@@ -8,7 +8,18 @@ Feature: Login
     When the user logs in with valid credentials
     Then the user should see the dashboard
 
-  Scenario: Login fails with invalid credentials
+  Scenario Outline: Login fails with invalid credentials
     Given the user is on the login page
-    When the user logs in with username "WrongUser" and password "wrongpass"
-    Then an error message "Invalid credentials" should be displayed
+    When the user logs in with username "<username>" and password "<password>"
+    Then an error message "<errorMessage>" should be displayed
+
+    Examples:
+      | username  | password  | errorMessage        |
+      | WrongUser | admin123  | Invalid credentials |
+      | Admin     | wrongpass | Invalid credentials |
+      | WrongUser | wrongpass | Invalid credentials |
+
+  Scenario: Login with empty username shows required field error
+    Given the user is on the login page
+    When the user logs in with username "" and password "admin123"
+    Then a required field error should be displayed

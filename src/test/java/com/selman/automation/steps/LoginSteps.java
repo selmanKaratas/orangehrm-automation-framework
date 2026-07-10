@@ -46,4 +46,14 @@ public class LoginSteps {
     public void anErrorMessageShouldBeDisplayed(String expectedMessage) {
         assertThat(loginPage.getErrorMessage()).isEqualTo(expectedMessage);
     }
+
+    @Then("a required field error should be displayed")
+    public void aRequiredFieldErrorShouldBeDisplayed() {
+        assertThat(loginPage.getRequiredFieldError())
+                .isEqualTo("Required");
+    }
+
+
+
+
 }

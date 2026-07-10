@@ -9,18 +9,24 @@ public class LoginPage {
 
     private final Page page;
 
-    // Locators — defined once, used everywhere
+    // Locators defined once, used everywhere
     private final Locator usernameInput;
     private final Locator passwordInput;
     private final Locator loginButton;
     private final Locator errorMessage;
+    private final Locator usernameRequiredError;
 
     public LoginPage(Page page) {
         this.page = page;
+
         this.usernameInput = page.locator("input[name='username']");
         this.passwordInput = page.locator("input[name='password']");
         this.loginButton = page.locator("button[type='submit']");
         this.errorMessage = page.locator(".oxd-alert-content-text");
+
+        this.usernameRequiredError = page.locator(".oxd-input-group")
+                .filter(new Locator.FilterOptions().setHas(usernameInput))
+                .locator(".oxd-input-field-error-message");
     }
 
     public void navigate() {
@@ -35,6 +41,10 @@ public class LoginPage {
     }
 
     public String getErrorMessage() {
-        return errorMessage.textContent();
+        return errorMessage.innerText();
+    }
+
+    public String getRequiredFieldError() {
+        return usernameRequiredError.innerText();
     }
 }
