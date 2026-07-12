@@ -4,15 +4,16 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import com.selman.automation.models.Employee;
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class PimPage {
-    private final Page page;
     private final Locator firstNameInput;
     private final Locator middleNameInput;
     private final Locator lastNameInput;
     private final Locator saveButton;
     private final Locator employeeHeaderName;
     private final Locator addButton;
+    private final Page page;
 
     public PimPage(Page page) {
         this.page = page;
@@ -41,11 +42,16 @@ public class PimPage {
         firstNameInput.fill(employee.firstName());
         middleNameInput.fill(employee.middleName());
         lastNameInput.fill(employee.lastName());
-        saveButton.click();
-    }
 
+        saveButton.click();
+        page.waitForURL("**/pim/viewPersonalDetails/**");
+    }
 
     public String getDisplayedEmployeeName() {
-        return employeeHeaderName.innerText();
+        Locator header = page.locator(".orangehrm-edit-employee-name h6");
+        header.waitFor();
+        page.waitForCondition(() -> !header.innerText().isBlank());
+        return header.innerText();
     }
+
 }

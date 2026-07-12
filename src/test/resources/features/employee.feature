@@ -7,3 +7,10 @@ Feature: Employee Management
     Given the user is logged in as admin
     When the user adds a new employee with random data
     Then the employee's personal details page should display the correct name
+
+
+  Scenario: Search for an existing employee by name
+    Given the user is logged in as admin
+    And an employee with random data exists
+    When the user searches for that employee by name
+    Then the employee should appear in the search results
