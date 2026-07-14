@@ -36,6 +36,17 @@ public class TestContext {
         }
     }
 
+
+    public void startAuthenticatedSession(String sessionCookie) {
+        browserContext.addCookies(java.util.List.of(
+                new com.microsoft.playwright.options.Cookie("orangehrm", sessionCookie)
+                        .setDomain("opensource-demo.orangehrmlive.com")
+                        .setPath("/")
+        ));
+    }
+
+
+
     public Page getPage() {
         return page;
     }

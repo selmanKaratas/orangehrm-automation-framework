@@ -11,6 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
 import com.selman.automation.pages.EmployeeListPage;
+import com.selman.automation.api.ApiClient;
 
 import java.util.List;
 
@@ -95,6 +96,17 @@ public class EmployeeSteps {
                 .isNotNull();
 
         employeeListPage.searchByName(employee.firstName());
+    }
+
+
+    @Given("the user is logged in as admin via API")
+    public void theUserIsLoggedInAsAdminViaApi() {
+        String session = new ApiClient().loginAndGetSessionCookie(
+                ConfigManager.get().defaultUsername(),
+                ConfigManager.get().defaultPassword()
+        );
+        context.startAuthenticatedSession(session);
+        context.getPage().navigate(ConfigManager.get().baseUrl() + "/web/index.php/dashboard/index");
     }
 
 
