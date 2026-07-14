@@ -75,7 +75,6 @@
 
 
 
-
     <!-- Type-safe configuration management -->
     <dependency>
       <groupId>org.aeonbits.owner</groupId>
@@ -101,7 +100,13 @@
     </dependency>
 
 
-
+    <!-- JUnit 5 Jupiter: @Test, @BeforeAll etc. for plain unit/API tests -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.11.3</version>
+      <scope>test</scope>
+    </dependency>
 
   </dependencies>
 
