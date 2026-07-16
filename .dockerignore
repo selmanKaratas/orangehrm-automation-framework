@@ -1,0 +1,8 @@
+target/
+.git/
+.github/
+.idea/
+*.iml
+allure-results/
+docker-test-results/
+.DS_Store
