@@ -1,0 +1,8 @@
+services:
+  tests:
+    build: .
+    command: ["mvn", "test", "-Dheadless=true"]
+    environment:
+      HEADLESS: "true"
+    volumes:
+      - ./target/allure-results:/app/target/allure-results
